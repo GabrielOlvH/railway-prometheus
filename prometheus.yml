@@ -12,7 +12,7 @@ scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['prometheus:9090'] # Use the service name
+      - targets: ['railway-prometheus:9090'] # Use the service name
 
   - job_name: 'postgres'
     scrape_interval: 5s
