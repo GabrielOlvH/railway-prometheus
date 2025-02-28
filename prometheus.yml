@@ -5,26 +5,24 @@ global:
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
     monitor: 'railway-prom'
+  depends_on:
+    - pg-exporter
+    - redis-exporter
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
-
     static_configs:
-      - targets: ['localhost:9090']
-  
+      - targets: ['prometheus:9090'] # Use the service name
 
   - job_name: 'postgres'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9187']
+      - targets: ['pg-exporter:9187'] # Use the service name
 
   - job_name: 'redis'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9121']
+      - targets: ['redis-exporter:9121'] # Use the service name
