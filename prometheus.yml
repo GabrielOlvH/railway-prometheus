@@ -17,9 +17,9 @@ scrape_configs:
   - job_name: 'postgres'
     scrape_interval: 5s
     static_configs:
-      - targets: ['http://postgres-metrics-collector.railway.internal:9187'] # Use the service name
+      - targets: ['postgres-metrics-collector.railway.internal:9187'] # Use the service name
 
   - job_name: 'redis'
     scrape_interval: 5s
     static_configs:
-      - targets: ['http://redis-metrics-collector.railway.internal:9121'] # Use the service name
+      - targets: ['redis-metrics-collector.railway.internal:9121'] # Use the service name
